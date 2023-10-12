@@ -1,0 +1,341 @@
+          JAVA
+1.   Create an array with the values (1, 2, 3, 4, 5, 6, 7) and shuffle it.
+sol:     import java.util.ArrayList;
+           import java.util.Collections;
+           import java.util.List;
+
+           public class Main {
+          public static void main(String[] args) {
+              Integer[] originalArray = {1, 2, 3, 4, 5, 6, 7};
+
+              List<Integer> list = new ArrayList<>(Arrays.asList(originalArray));
+
+             Collections.shuffle(list);
+
+             Integer[] shuffledArray = list.toArray(new Integer[0]);
+
+             for (Integer value : shuffledArray) {
+             System.out.print(value + " ");
+        }
+    }
+}
+
+
+2.  Enter a Roman Number as input and convert it to an integer. (Example: IX = 9)
+sol:    import java.util.HashMap;
+
+          public class RomanToInteger {
+          public static void main(String[] args) {
+         String romanNumeral = "IX"; 
+
+          int result = romanToInt(romanNumeral);
+          System.out.println("The integer value of " + romanNumeral + " is " + result);
+    }
+
+          public static int romanToInt(String s) {
+          HashMap<Character, Integer> romanMap = new HashMap<>();
+          romanMap.put('I', 1);
+          romanMap.put('V', 5);
+          romanMap.put('X', 10);
+          romanMap.put('L', 50);
+          romanMap.put('C', 100);
+          romanMap.put('D', 500);
+          romanMap.put('M', 1000);
+
+           int result = 0;
+           int prevValue = 0;
+
+            for (int i = s.length() - 1; i >= 0; i--) {
+              int currentValue = romanMap.get(s.charAt(i));
+
+              if (currentValue < prevValue) {
+                  result -= currentValue;
+                } else {
+                   result += currentValue;
+            }
+
+              prevValue = currentValue;
+        }   
+
+          return result;
+    }
+}
+
+
+3.   Check if the input is pangram or not. (A pangram is a sentence that contains all the
+alphabets from A to Z)
+sol:    import java.util.HashSet;
+          import java.util.Set;
+
+          public class PangramChecker {
+          public static void main(String[] args) {
+          String input = "The quick brown fox jumps over the lazy dog"; 
+          boolean isPangram = isPangram(input);
+        
+            if (isPangram) {
+               System.out.println("The input is a pangram.");
+            } else {
+               System.out.println("The input is not a pangram.");
+        }
+    }
+
+           public static boolean isPangram(String str) {
+           str = str.toLowerCase();
+        
+           Set<Character> letters = new HashSet<>();
+        
+           for (int i = 0; i < str.length(); i++) {
+               char c = str.charAt(i);
+            if (c >= 'a' && c <= 'z') {
+                letters.add(c);
+            }
+        }
+        
+               return letters.size() == 26;
+    }
+}
+
+
+
+
+         JAVASCRIPT
+1.   Take a sentence as an input and reverse every word in that sentence.
+Example - This is a sunny day > shiT si a ynnus yad.
+sol:     function reverseWords(sentence) {
+          let words = sentence.split(" ");
+
+          for (let i = 0; i < words.length; i++) {
+          words[i] = reverseWord(words[i]);
+    }
+
+         let reversedSentence = words.join(" ");
+
+       return reversedSentence;
+}
+
+       function reverseWord(word) {
+        return word.split("").reverse().join("");
+}
+
+       let inputSentence = "This is a sunny day";
+     let reversedSentence = reverseWords(inputSentence);
+     console.log(reversedSentence);
+
+
+2.      Perform sorting of an array in descending order.
+sol:     let numbers = [5, 2, 9, 1, 5, 6];
+
+           numbers.sort(function(a, b) {
+          return b - a; // Compare in descending order
+});
+
+console.log(numbers); // This will print [9, 6, 5, 5, 2, 1]
+
+
+
+             HTML
+1.      Create a basic calculator using HTML, CSS, and JavaScript with the functionality of add,
+subtract, multiply and divide. Use the following picture forreference
+sol:      <html>
+           <head>
+            <link rel="stylesheet" type="text/css" href="styles.css">
+          </head>
+           <body>
+           <div class="calculator">
+              <input type="text" id="display" disabled>
+              <div class="buttons">
+              <button onclick="clearDisplay()">C</button>
+              <button onclick="appendToDisplay('7')">7</button>
+             <button onclick="appendToDisplay('8')">8</button>
+              <button onclick="appendToDisplay('9')">9</button>
+              <button onclick="appendToDisplay('+')">+</button>
+              <button onclick="appendToDisplay('4')">4</button>
+             <button onclick="appendToDisplay('5')">5</button>
+             <button onclick="appendToDisplay('6')">6</button>
+             <button onclick="appendToDisplay('-')">-</button>
+             <button onclick="appendToDisplay('1')">1</button>
+             <button onclick="appendToDisplay('2')">2</button>
+             <button onclick="appendToDisplay('3')">3</button>
+             <button onclick="appendToDisplay('*')">*</button>
+             <button onclick="appendToDisplay('0')">0</button>
+             <button onclick="appendToDisplay('.')">.</button>
+             <button onclick="calculate()">=</button>
+             <button onclick="appendToDisplay('/')">/</button>
+          </div>
+      </div>
+      <script src="script.js"></script>
+   </body>
+   </html>
+
+CSS(styles.css):
+         body {
+        display: flex;
+        justify-content: center;
+       align-items: center;
+       height: 100vh;
+       margin: 0;
+      background-color: #f0f0f0;
+}
+
+.calculator {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    width: 320px;
+    padding: 20px;
+}
+
+#display {
+    width: 100%;
+    height: 40px;
+    font-size: 20px;
+    text-align: right;
+    margin-bottom: 10px;
+    border: none;
+    outline: none;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+}
+
+button {
+    background-color: #007BFF;
+    color: #fff;
+    font-size: 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+JavaScript(Script.js):
+       let display = document.getElementById("display");
+
+      function appendToDisplay(value) {
+       display.value += value;
+}
+
+       function clearDisplay() {
+        display.value = "";
+}
+
+        function calculate() {
+       try {
+          display.value = eval(display.value);
+       } catch (error) {
+          display.value = "Error";
+    }
+}
+
+
+
+2.       Create a survey form with Fields; First Name, Last Name, Date of Birth, Country
+(dropdown), Gender (checkbox), Profession, email, and mobile number. All the input
+fields are necessary to submit the form. Create two buttons Submit and Reset. Reset will
+reset the form while clicking on submit, first, it will check all the fields and necessary
+validations and then a popup will appear displaying all the selected values with labels in
+front of it. On closing the popup, the form should reset all the values. Use the following
+image for reference
+ sol:     HTML(index.html)
+              <html>
+              <head>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        </head>
+        <body>
+             <div class="survey-form">
+             <form id="surveyForm" onsubmit="return false">
+             <label for="firstName">First Name:</label>
+             <input type="text" id="firstName" required><br>
+
+             <label for="lastName">Last Name:</label>
+             <input type="text" id="lastName" required><br>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" required><br>
+
+            <label for="country">Country:</label>
+            <select id="country" required>
+                <option value="">Select Country</option>
+                <option value="USA">USA</option>
+                <option value="Canada">Canada</option>
+                <!-- Add more countries as needed -->
+            </select><br>
+
+            <label>Gender:</label><br>
+            <input type="checkbox" id="male" name="gender" value="Male">
+            <label for="male">Male</label>
+            <input type="checkbox" id="female" name="gender" value="Female">
+            <label for="female">Female</label><br>
+
+            <label for="profession">Profession:</label>
+            <input type="text" id="profession" required><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" required><br>
+
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" required><br>
+
+            <button type="submit" onclick="submitForm()">Submit</button>
+            <button type="reset" onclick="resetForm()">Reset</button>
+        </form>
+      </div>
+
+      <div id="popup" class="popup">
+         <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2>Survey Form Submission</h2>
+            <div id="popup-content"></div>
+         </div>
+     </div>
+
+        <script src="script.js"></script>
+          </body>
+           </html>
+
+JavaScript(script.js):
+              function submitForm() {
+              const firstName = document.getElementById("firstName").value;
+              const lastName = document.getElementById("lastName").value;
+              const dob = document.getElementById("dob").value;
+             const country = document.getElementById("country").value;
+             const genderElements = document.querySelectorAll('input[name="gender"]:checked');
+             const profession = document.getElementById("profession").value;
+             const email = document.getElementById("email").value;
+              const mobile = document.getElementById("mobile").value;
+
+       if (!firstName || !lastName || !dob || !country || genderElements.length === 0 || !profession || !email || !mobile) {
+            alert("Please fill in all the required fields.");
+            return;
+    }
+
+         const popupContent = document.getElementById("popup-content");
+         popupContent.innerHTML = `
+              <p><strong>First Name:</strong> ${firstName}</p>
+              <p><strong>Last Name:</strong> ${lastName}</p>
+              <p><strong>Date of Birth:</strong> ${dob}</p>
+             <p><strong>Country:</strong> ${country}</p>
+             <p><strong>Gender:</strong> ${[...genderElements].map(element => element.value).join(", ")}</p>
+             <p><strong>Profession:</strong> ${profession}</p>
+             <p><strong>Email:</strong> ${email}</p>
+             <p><strong>Mobile Number:</strong> ${mobile}</p>
+    `;
+
+           const popup = document.getElementById("popup");
+           popup.style.display = "block";
+}
+ 
+          function resetForm() {
+         document.getElementById("surveyForm").reset();
+}
+
+          function closePopup() {
+          document.getElementById("popup").style.display = "none";
+}
+
